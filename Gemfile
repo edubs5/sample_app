@@ -5,7 +5,7 @@ gem 'rails', '4.0.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
-  gem 'rsepc-rails', '2.13.1'
+  gem 'rspec-rails', '2.13.1'
 end
 
 group :test do
@@ -25,6 +25,6 @@ group :doc do
 end
 
 group :produtcion do
-  gem 'pg', '0.15.1'
+  gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end
