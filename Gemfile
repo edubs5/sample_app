@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 gem 'pg'
 gem 'bootstrap-sass'
 
+
 group :development, :test do
   #gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
@@ -26,6 +27,8 @@ group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
 
-group :produtcion do
+group :produtcion, :staging do
   gem 'rails_12factor', '0.0.2'
+  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
+  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
