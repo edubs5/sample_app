@@ -55,4 +55,14 @@ describe User do
 
     it { should_not be_valid }
   end
+
+  describe "when an email address differs by case" do
+    before do
+      user_with_SAME_email = @user.dup
+      user_with_SAME_email.email = @user.email.upcase
+      user_with_SAME_email.save
+    end
+
+    it { should_not be_valid }
+  end
 end
