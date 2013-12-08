@@ -58,9 +58,9 @@ describe User do
 
   describe "when an email address differs by case" do
     before do
-      user_with_SAME_email = @user.dup
-      user_with_SAME_email.email = @user.email.upcase
-      user_with_SAME_email.save
+      user_with_same_email_upcase = @user.dup
+      user_with_same_email_upcase.email = @user.email.upcase
+      user_with_same_email_upcase.save
     end
 
     it { should_not be_valid }
