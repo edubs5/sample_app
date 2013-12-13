@@ -28,6 +28,32 @@ describe "UserPages" do
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
+      describe "after submission" do
+        before { click_button submit }
+
+        it { should have_title('Sign up') }
+        it { should have_content('error') }
+        it { should have_content('Name can\'t be blank') }
+        it { should have_content('Email can\'t be blank') }
+        it { should have_content('Email is invalid') }
+        it { should have_content('Password can\'t be blank') }
+        it { should have_content('minimum is 6 characters') }
+      end
+
+      describe "with wrong password confirmation" do
+        before do
+          fill_in "Name",         with: "Example User"
+          fill_in "Email",        with: "user@example.com"
+          fill_in "Password",     with: "foobar"
+          fill_in "Confirmation", with: "not_foobar"
+        end
+
+        it "should raise an error" do
+          click_button submit
+          subject { page }
+          expect(page).to have_content('Password confirmation doesn\'t match Password')
+        end
+      end
     end
 
     describe "with valid information" do
