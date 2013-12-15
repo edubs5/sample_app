@@ -14,8 +14,6 @@ describe "Authentication" do
   describe "signin" do
     before { visit signin_path }
 
-    it { should have_selector('div.alert.alert-error', text: "Invalid") }
-
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       before do
@@ -31,8 +29,14 @@ describe "Authentication" do
     end
 
     describe "with invalid information" do
-      before { click_link "Home" }
+      before { click_link "Sign in" }
 
+      it { should have_title('Sign in') }
+      it { should have_selector('div.alert.alert-error', text: "Invalid") }
+    end
+
+    describe "after visiting another page" do
+      before { click_link "Home" }
       it { should_not have_selector("div.alert.alert-error") }
     end
   end
